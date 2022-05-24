@@ -179,3 +179,11 @@ test the BLEU score of auxiliary MT task:
     --scoring sacrebleu
 ```
 # Citation
+```
+@article{dong2022leveraging,
+  title={Leveraging Pseudo-labeled Data to Improve Direct Speech-to-Speech Translation},
+  author={Dong, Qianqian and Yue, Fengpeng and Ko, Tom and Wang, Mingxuan and Bai, Qibing and Zhang, Yu},
+  journal={arXiv preprint arXiv:2205.08993},
+  year={2022}
+}
+```
