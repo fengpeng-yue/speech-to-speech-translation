@@ -3,7 +3,8 @@ If you have any questions, please email to us (11930381@mail.sustech.edu.cn, don
 # Requirements
 Follow the [installation](https://github.com/pytorch/fairseq) method of Fairseq.  
 # Data Preparation: 
-stage1~stage3 in the ./examples/s2s_trans/run_baseline.sh is used to prepare dataset format.   
+Dataset should be prepared into the following format. If there're any questions about data preparation, please email at dongqianqian@bytedance.com.
+
 train_fisher.tsv (format):  
 ```
 id	src_audio	tgt_audio	src_n_frames	tgt_n_frames	src_text	speaker		tgt_text  
