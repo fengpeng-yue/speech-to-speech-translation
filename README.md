@@ -23,7 +23,7 @@ The preprocessed directory mainfest should look like as follows:
 │   ├── test_fisher.tsv
 │   ├── tgt_gcmvn_stats.npz
 |   ├── tgt_logmelspec80.zip
-│   ├── tgt_vocav.txt
+│   ├── tgt_vocab.txt
 │   ├── train_fisher.tsv
 
 ```
