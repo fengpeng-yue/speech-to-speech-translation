@@ -164,7 +164,7 @@ if [ ${stage} -le 6 ] && [ ${stop_stage} -ge 6 ]; then
     --num-epoch-checkpoints 15 \
     --output ${CHECKPOINT_PATH}
     
-    python3 /opt/tiger/s2st_fairseq/examples/speech_to_speech_translation/convert_pt_to512.py ${CHECKPOINT_PATH} ${SAVE_DIR}/checkpoint_${CHECKPOINT_NAME}_to512.pt
+    python3 /opt/tiger/s2st_fairseq/examples/s2s_trans/convert_pt_to512.py ${CHECKPOINT_PATH} ${SAVE_DIR}/checkpoint_${CHECKPOINT_NAME}_to512.pt
     mv ${SAVE_DIR}/checkpoint_${CHECKPOINT_NAME}.pt ${SAVE_DIR}/checkpoint_${CHECKPOINT_NAME}_raw.pt
     mv ${SAVE_DIR}/checkpoint_${CHECKPOINT_NAME}_to512.pt ${SAVE_DIR}/checkpoint_${CHECKPOINT_NAME}.pt
     cp ${SAVE_DIR}/checkpoint_${CHECKPOINT_NAME}.pt ${SAVE_DIR}/checkpoint_last_avg15.pt
@@ -193,7 +193,7 @@ if [ ${stage} -le 8 ] && [ ${stop_stage} -ge 8 ]; then
     SAVE_DIR=${s2st_save_dir}
     SPLIT=test_fisher
     CHECKPOINT_FILENAME=checkpoint_last_avg15.pt
-    python3 ${fairseq_dir}/examples/speech_to_speech_translation/evalute_s2s_bleu.py --audio_manifest_file   ${AUDIO_MANIFEST_ROOT}/fisher_test.audio.tsv \
+    python3 ${fairseq_dir}/examples/s2s_trans/evalute_s2s_bleu.py --audio_manifest_file   ${AUDIO_MANIFEST_ROOT}/fisher_test.audio.tsv \
                                     --decode_save_path ${SAVE_DIR}/dump_wav_${SPLIT}_${CHECKPOINT_FILENAME} \
                                     --out_result_file ${SAVE_DIR}/dump_wav_${SPLIT}_${CHECKPOINT_FILENAME}/decode.txt \
                                     --scoring sacrebleu
