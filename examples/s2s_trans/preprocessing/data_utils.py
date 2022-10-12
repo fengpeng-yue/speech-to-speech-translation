@@ -158,7 +158,7 @@ def gen_config_yaml(
 
     tgt_vocab_name = spm_filename.replace(".model", ".txt") if tgt_vocab_name is None \
         else tgt_vocab_name
-    writer.set_src_vocab_filename(tgt_vocab_name)
+    writer.set_tgt_vocab_filename(tgt_vocab_name)
 
 
     if input_channels is not None:
@@ -190,10 +190,11 @@ def gen_config_yaml(
         raise NotImplementedError
 
     if specaugment_policy is not None:
-        writer.set_feature_transforms(
-            "_train", [f"{cmvn_type}_cmvn", "specaugment"]
+        writer.set_src_feature_transforms(
+            "_train", [f"src_{cmvn_type}_cmvn", "specaugment"]
         )
-    writer.set_feature_transforms("*", [f"{cmvn_type}_cmvn"])
+    writer.set_src_feature_transforms("*", [f"src_{cmvn_type}_cmvn"])
+    writer.set_tgt_feature_transforms("*", [f"tgt_{cmvn_type}_cmvn"])
 
     if cmvn_type == "global":
         if src_gcmvn_path is None:
@@ -385,10 +386,14 @@ class S2TDataConfigWriter(object):
     def set_tgt_global_cmvn(self, stats_npz_path: str):
         self.config["tgr_global_cmvn"] = {"stats_npz_path": stats_npz_path}
 
-    def set_feature_transforms(self, split: str, transforms: List[str]):
-        if "transforms" not in self.config:
-            self.config["transforms"] = {}
-        self.config["transforms"][split] = transforms
+    def set_src_feature_transforms(self, split: str, transforms: List[str]):
+        if "src_transforms" not in self.config:
+            self.config["src_transforms"] = {}
+        self.config["src_transforms"][split] = transforms
+    def set_tgt_feature_transforms(self, split: str, transforms: List[str]):
+        if "tgt_transforms" not in self.config:
+            self.config["tgt_transforms"] = {}
+        self.config["tgt_transforms"][split] = transforms
 
     def set_prepend_tgt_lang_tag(self, flag: bool = True):
         self.config["prepend_tgt_lang_tag"] = flag
