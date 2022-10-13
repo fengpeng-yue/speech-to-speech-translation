@@ -45,8 +45,6 @@ asr_decoder_embed_dim=64
 st_decoder_embed_dim=64
 decoder_attention_heads=4
 encoder_attention_heads=4
-asr_decoder_attention_heads=4
-st_decoder_attention_heads=4
 train_gpus=1,2,3,4
 infer_gpus=0
 
@@ -117,10 +115,6 @@ if [ ${stage} -le 5 ] && [ ${stop_stage} -ge 5 ]; then
     --encoder-attention-heads ${encoder_attention_heads} \
     --decoder-attention-heads ${decoder_attention_heads} \
     --decoder-ffn-embed-dim ${decoder_ffn_embed_dim} \
-    --asr-decoder-attention-heads ${asr_decoder_attention_heads} \
-    --asr-decoder-ffn-embed-dim ${asr_decoder_ffn_embed_dim} \
-    --st-decoder-attention-heads ${st_decoder_attention_heads} \
-    --st-decoder-ffn-embed-dim ${st_decoder_ffn_embed_dim}
 fi
 
 if [ ${stage} -le 6 ] && [ ${stop_stage} -ge 6 ]; then
